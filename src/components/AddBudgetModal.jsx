@@ -5,7 +5,7 @@ import { useBudgets } from "../contexts/BudgetContext"
 export default function AddBudgetModal({ show, handleClose }) {
   const nameRef = useRef()
   const maxRef = useRef()
-  const { addBudget, theme, textColor } = useBudgets()
+  const { addBudget} = useBudgets()
   function handleSubmit(e) {
     e.preventDefault()
     addBudget({
@@ -16,7 +16,7 @@ export default function AddBudgetModal({ show, handleClose }) {
   }
 
   return (
-    <Modal show={show} onHide={handleClose} className={`bg-${theme} text-${textColor}`}>
+    <Modal show={show} onHide={handleClose}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>New Budget</Modal.Title>
