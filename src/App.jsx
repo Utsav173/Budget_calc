@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button, Container, Stack } from "react-bootstrap"
-import AddBudgetModal from "./components/AddBudgetmodal"
+import AddBudgetModal from "./components/AddBudgetModal"
 import AddExpenseModal from "./components/AddExpenseModal"
 import BudgetCard from "./components/BudgetCard"
 import TotalBudgetCard from "./components/TotalBudgetCard"
