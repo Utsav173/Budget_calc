@@ -15,8 +15,8 @@ const getTheme = () => {
   const theme = localStorage.getItem("theme");
   if (!theme) {
     // Default theme is taken as dark-theme
-    localStorage.setItem("theme", "dark");
-    return "dark";
+    localStorage.setItem("theme", "light");
+    return "light";
   } else {
     return theme;
   }
@@ -26,7 +26,7 @@ export const BudgetsProvider = ({ children }) => {
   const [budgets, setBudgets] = useLocalStorage("budgets", [])
   const [expenses, setExpenses] = useLocalStorage("expenses", [])
   const [theme, setTheme] = useState(getTheme);
-  const [textColor, setTextColor] = useState("black");
+  const [textColor, setTextColor] = useState("");
 
 
 
@@ -35,8 +35,8 @@ export const BudgetsProvider = ({ children }) => {
     if (theme === "dark") {
       setTheme("light");
       setTextColor("black")
-      document.body.style.backgroundColor = "#ffffff";
-      document.getElementById("root").style.backgroundColor = "#ffffff";
+      document.body.style.backgroundColor = "#f8f9fa";
+      document.getElementById("root").style.backgroundColor = "#f8f9fa";
     } else {
       setTheme("dark");
       setTextColor("white")
