@@ -11,22 +11,26 @@ export function useBudgets() {
 }
 
 
-const getTheme = () => {
-  const theme = localStorage.getItem("theme");
-  if (!theme) {
-    // Default theme is taken as dark-theme
-    localStorage.setItem("theme", "light");
-    return "light";
-  } else {
-    return theme;
-  }
+const useThemeDetector = () => {
+  const getCurrentTheme = () => window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [dark, setDark] = useState(getCurrentTheme());  
+  const mqListener = (e => {
+      setDark(e.matches);
+  });
+  
+  useEffect(() => {
+    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+    darkThemeMq.addListener(mqListener);
+    return () => darkThemeMq.removeListener(mqListener);
+  }, []);
+  return dark;
 }
 
 export const BudgetsProvider = ({ children }) => {
   const [budgets, setBudgets] = useLocalStorage("budgets", [])
   const [expenses, setExpenses] = useLocalStorage("expenses", [])
-  const [theme, setTheme] = useState(getTheme);
-  const [textColor, setTextColor] = useState("");
+  const [theme, setTheme] = useState(useThemeDetector());
+  const [textColor, setTextColor] = useState("dark");
 
 
 
